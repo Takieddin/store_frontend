@@ -6,6 +6,10 @@ import Brand from '../../Brand/Brand'
 import { Switch, Hidden } from '@material-ui/core'
 import { convertHexToRGB } from 'utils'
 import useSettings from 'app/hooks/useSettings'
+import img from './vert.jpg'
+const r={backgroundImage: ` url('../../../../cloth/vert.jpg')`,
+backgroundSize: '100% auto',
+}
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     sidenav: ({ width, primaryRGB, bgImgURL }) => ({
@@ -15,14 +19,14 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
         height: '100vh',
         width: width,
         boxShadow: theme.shadows[8],
-        backgroundRepeat: 'no-repeat',
         backgroundPosition: 'top',
-        backgroundSize: 'cover',
+        backgroundSize: '100% auto',
+        
         zIndex: 111,
         overflow: 'hidden',
         color: palette.text.primary,
         transition: 'all 250ms ease-in-out',
-        backgroundImage: `linear-gradient(to bottom, rgba(${primaryRGB}, 0.96), rgba(${primaryRGB}, 0.96)), url(${bgImgURL})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(${primaryRGB}, 0.96), rgba(${primaryRGB}, 0.16)), url(${img})`,
         '&:hover': {
             width: 'var(--sidenav-width)',
             '& .sidenavHoverShow': {
@@ -85,7 +89,7 @@ const Layout1Sidenav = () => {
     }
 
     return (
-        <div className={classes.sidenav}>
+        <div className={classes.sidenav} style={{r}}>
             <div className="flex-column relative h-full">
                 <Brand>
                     <Hidden smDown>

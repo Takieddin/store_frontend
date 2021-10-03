@@ -156,6 +156,10 @@ export const themeColors = {
             },
             error: errorColor,
             text: textLight,
+            background: {
+                paper: '#fffcfc',
+                default: '#f0e9e9',
+            },
         },
     },
     blueDark: {
@@ -171,8 +175,8 @@ export const themeColors = {
             },
             error: errorColor,
             background: {
-                paper: '#222A45',
-                default: '#1a2038',
+                paper: '#0025a3',
+                default: '##0025a3',
             },
         },
     },

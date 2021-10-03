@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { url } from '../constanst'
 
 export const GET_ALL_BOARD = 'GET_ALL_BOARD'
 export const GET_BOARD_BY_ID = 'GET_BOARD_BY_ID'

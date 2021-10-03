@@ -10,6 +10,10 @@ import dragAndDropRoute from './views/Drag&Drop/DragAndDropRoute'
 
 import formsRoutes from './views/forms/FormsRoutes'
 import mapRoutes from './views/map/MapRoutes'
+import clientsRoutes from './views/listClients/clientsRoutes'
+import stockRoutes from './views/stock/stockRoutes'
+import fournisseursRoutes from './views/listFournisseurs/fournisseursRoutes'
+import operationRoutes from './views/Operation/operationRoutes'
 
 
 const redirectRoute = [
@@ -27,6 +31,10 @@ const errorRoute = [
 ]
 
 const routes = [
+    ...clientsRoutes,
+    ...stockRoutes,
+    ...operationRoutes,
+    ...fournisseursRoutes,
     ...dashboardRoutes,
     ...materialRoutes,
     ...utilitiesRoutes,

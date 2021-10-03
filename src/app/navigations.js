@@ -7,6 +7,26 @@ export const navigations = [
         icon: 'dashboard',
     },
     {
+        name: 'Operation d\'achat',
+        path: '/operation',
+        icon: 'local_grocery_store',
+    },
+    {
+        name: 'List Clients',
+        path: '/listclients',
+        icon: 'people',
+    },
+    {
+        name: 'List fournisseurs',
+        path: '/fournisseurs',
+        icon: 'local_shipping',
+    },
+    {
+        name: 'Stock',
+        path: '/stock',
+        icon: 'store',
+    },
+    /*{
         label: 'Pages',
         type: 'label',
     },
@@ -160,7 +180,7 @@ export const navigations = [
                 iconText: 'S',
             },
         ],
-    },
+    },*/
     {
         name: 'Charts',
         icon: 'trending_up',

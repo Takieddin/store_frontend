@@ -13,15 +13,18 @@ import { makeStyles } from '@material-ui/core/styles'
 import history from 'history.js'
 import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
+import img from './cl.jpg'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     cardHolder: {
-        background: '#1A2038',
+        background: `url(${img})`,
+        backgroundSize:'100% auto',
     },
     card: {
         maxWidth: 800,
         borderRadius: 12,
         margin: '1rem',
+        opacity:'0.8',
     },
     buttonProgress: {
         position: 'absolute',
@@ -35,8 +38,8 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 const JwtLogin = () => {
     const [loading, setLoading] = useState(false)
     const [userInfo, setUserInfo] = useState({
-        email: 'jason@ui-lib.com',
-        password: 'dummyPass',
+        email: 'ahmed@chekirine.com',
+        password: 'achek',
     })
     const [message, setMessage] = useState('')
     const { login } = useAuth()

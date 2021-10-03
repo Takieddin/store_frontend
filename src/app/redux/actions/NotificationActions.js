@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { url } from '../constanst'
 
 export const GET_NOTIFICATION = 'GET_NOTIFICATION'
 export const CREATE_NOTIFICATION = 'CREATE_NOTIFICATION'

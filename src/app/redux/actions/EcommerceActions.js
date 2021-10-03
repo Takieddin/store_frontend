@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { url } from '../constanst'
 
 export const GET_PRODUCT_LIST = 'GET_PRODUCT_LIST'
 export const GET_CART_LIST = 'GET_CART_LIST'

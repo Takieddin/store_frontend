@@ -7,7 +7,7 @@ const FollowerCard2 = () => {
     const { palette } = useTheme()
 
     return (
-        <Card className="p-4" elevation={3}>
+        <Card className="p-4" elevation={6}>
             <div className="flex justify-between items-center">
                 <h4 className="m-0">One Else Graph</h4>
                 <div className="flex items-center">
@@ -26,7 +26,7 @@ const FollowerCard2 = () => {
             </div>
             <small className="text-muted">System project</small>
             <ModifiedAreaChart
-                height="100%"
+                height="300%"
                 option={{
                     grid: {
                         top: 0,
@@ -41,7 +41,7 @@ const FollowerCard2 = () => {
                     },
                     series: [
                         {
-                            data: [34, 45, 31, 45, 31, 43, 26],
+                            data: [34, 45, 31, 45, 31, 90, 26],
                             type: 'line',
                         },
                     ],
@@ -49,7 +49,7 @@ const FollowerCard2 = () => {
                         data: ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
                     },
                     yAxis: {
-                        show: false,
+                        show: true,
                     },
                     color: [
                         {

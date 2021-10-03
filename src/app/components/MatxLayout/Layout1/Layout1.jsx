@@ -130,7 +130,6 @@ const Layout1 = () => {
 
                 {settings.footer.show && settings.footer.fixed && <Footer />}
             </div>
-            {settings.secondarySidebar.show && <SecondarySidebar />}
         </div>
     )
 }

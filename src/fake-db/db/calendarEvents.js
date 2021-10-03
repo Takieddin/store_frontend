@@ -9,16 +9,7 @@ const calendarEventDB = {
             start: new Date(date.getFullYear(), date.getMonth(), 1),
             end: new Date(date.getFullYear(), date.getMonth(), 3),
         },
-        {
-            id: 'dfdfdsfedrevcr',
-            title: 'A trip to Bali Island',
-            start: new Date(),
-            end: new Date(
-                date.getFullYear(),
-                date.getMonth(),
-                date.getDate() + 2
-            ),
-        },
+       
     ],
 }
 

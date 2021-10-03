@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { url } from '../constanst'
 
 export const calculateAmount = (item) => {
     if (!item.discount) return item.price * item.quantity || 0
