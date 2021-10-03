@@ -2,6 +2,7 @@ export var firebaseConfig = {
     apiKey: 'AIzaSyBoUdiDtzQdC-m4nj9CPY5SvY7uKJGL71k',
     authDomain: 'matx-15ede.firebaseapp.com',
     databaseURL: 'https://matx-15ede.firebaseio.com',
+    
     projectId: 'matx-15ede',
     storageBucket: 'matx-15ede.appspot.com',
     messagingSenderId: '348111707030',
