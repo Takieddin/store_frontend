@@ -2,7 +2,7 @@
   "name": "matx-react",
   "version": "2.0.0",
   "private": true,
-  "homepage": "https://uilibrary.github.io/matx-react/",
+  "homepage": "https://takieddin.github.io/store_frontend/",
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.12.1",
     "@babel/runtime": "^7.10.5",
@@ -35,7 +35,6 @@
     "eslint-plugin-react-hooks": "0.0.0-8d7535e54",
     "firebase": "^8.6.7",
     "formik": "^2.1.5",
-    "gh-pages": "3.2.3",
     "globalize": "^0.1.1",
     "history": "^4.10.0",
     "install": "^0.13.0",
@@ -82,6 +81,8 @@
     "yup": "^0.29.3"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
@@ -109,7 +110,7 @@
     "cross-env": "^5.2.0",
     "customize-cra": "^0.9.1",
     "eslint-plugin-react-hooks": "0.0.0-8d7535e54",
-    "gh-pages": "3.2.3",
+    "gh-pages": "^3.2.3",
     "react-app-rewired": "^2.1.6"
   }
 }
