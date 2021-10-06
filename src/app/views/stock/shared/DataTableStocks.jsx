@@ -5,40 +5,32 @@ import {connect} from 'react-redux'
 import { fetchCBS } from 'app/redux/actions/StockActions';
 
 
+
 const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
   {
     field: 'brand_name',
-    headerName: "Brand ",
-    flex: 1,
-    minwidth:150,
-
+    headerName: "Brand:Stock ",
+   width: 150,
+   valueFormatter: (params) =>
+   `${params.getValue(params.id, 'brand_name')}:${params.getValue(params.id, 'name')}`
+   
   },
-  {
-    field: 'name',
-    headerName: "Stock",
-    flex: 1,
-    minwidth:150,
-
-  },
+  
   {
     field: 'quantity',
     headerName: 'quantity',
     type: 'number',
-    flex: 1,
-  },
+   width: 120,  },
   {
     field: 'instock',
     headerName: 'instock',
     type: 'number',
-    flex: 1,
-  },
+   width: 120,  },
   {
     field: 'item_buying_price',
     headerName: 'Prix d\'achat',
     type: 'number',
-    flex: 1,
-    editable: true,
+   width: 120,    editable: true,
     valueFormatter: (params) =>
     `${params.getValue(params.id, 'item_buying_price')+',00 DA'}`
   },
@@ -46,8 +38,7 @@ const columns = [
     field: 'item_sale_price',
     headerName: 'Prix de vente',
     type: 'number',
-    flex: 1,
-    editable: true,
+   width: 120,    editable: true,
     valueFormatter: (params) =>
     `${params.getValue(params.id, 'item_sale_price')+',00 DA'}`
   },
@@ -56,8 +47,7 @@ const columns = [
     field: 'date',
     headerName: 'date',
     type: 'date',
-    flex: 1,
-    editable: true,
+   width: 120,    editable: true,
     valueFormatter: (params) =>
     `${new Date(params.getValue(params.id, 'date')).toLocaleDateString()}`
   },
@@ -77,7 +67,7 @@ const  DataTableStocks = ({dispatch,stocks}) =>{
   return (
     <div style={{ height: 400, width: '100%' }}>
         
-      <DataGrid 
+      <DataGrid
       onRowClick={handleRowClick}
         rows={stocks||[]}
         columns={columns}

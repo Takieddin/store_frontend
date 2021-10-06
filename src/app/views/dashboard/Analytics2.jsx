@@ -65,7 +65,7 @@ const Analytics2 = ({dispatch}) => {
                     <Card className="mt-5 pl-5 mb-6" elevation={6}>
                         <div className=" px-4 py-3 mb-6 flex justify-between items-center bg-light-gray">
                             <span className="font-medium text-muted">
-                                STATISTICS
+                                
                             </span>
                             <IconButton size="small">
                                 <Icon>more_horiz</Icon>

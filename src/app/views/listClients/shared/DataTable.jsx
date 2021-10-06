@@ -136,27 +136,25 @@ import { fetchClients, SELECT_CLIENT } from 'app/redux/actions/ClientActions'
 import { SELECT_PROCESS } from 'app/redux/actions/ProcessActions';
 import MatxProgressBar from 'app/components/MatxProgressBar/MatxProgressBar';
 const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
   {
     field: 'name',
     headerName: 'Name',
-    flex: 1,
-    minwidth:150,
-
+    minWidth:150,
     editable: true,
   },
   {
     field: 'phone',
     headerName: 'Phone',
     type: 'number',
-    flex: 1,
-    editable: true,    
+    editable: true,
+    minWidth:150,
   },
   {
     field: 'paied',
     headerName: 'paied',
-    flex: 2,
     type: 'number',
+    minWidth:300,
+    flex:3,
 
     renderCell: (params) =>{const v=((parseInt(`${params.getValue(params.id, 'paied')}`)/parseInt(`${params.getValue(params.id, 'total')}`))*100);return (<>
     
@@ -167,7 +165,7 @@ const columns = [
          <MatxProgressBar 
                     value={v}
                     color={v<80?"secondary":"primary"}
-                    text={v+'%'}
+                    text={v.toFixed(2)+'%'}
                 />
         </>
       )}
@@ -176,8 +174,8 @@ const columns = [
     field: 'total',
     headerName: 'Credit restent',
     type: 'number',
-    flex: 1,
     editable: true,
+    minWidth:150,
     valueFormatter: (params) =>
     `${(parseInt(`${params.getValue(params.id, 'total')}`)-parseInt(`${params.getValue(params.id, 'paied')}`))+',00 DA'}`
   },
@@ -185,8 +183,8 @@ const columns = [
     field: 'delais',
     headerName: 'delais',
     type: 'date',
-    flex: 1,
     editable: true,
+    minWidth:150,
     valueFormatter: (params) =>
     `${new Date(params.getValue(params.id, 'delais')).toLocaleDateString()}`},
 ];

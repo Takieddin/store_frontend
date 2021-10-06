@@ -135,12 +135,10 @@ import {connect} from 'react-redux'
 import { Button,   } from '@material-ui/core';
 import SimpleDialogDemo from 'app/views/material-kit/dialog/SimpleDialog';
 const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
   {
     field: 'stock_name',
     headerName: 'Mark (stock_name)',
     flex: 1,
-    minwidth:150,
     valueFormatter: (params) =>
     `${params.getValue(params.id, 'brand_name')}`+'-'+`${params.getValue(params.id, 'stock_name')}`
 
@@ -150,6 +148,7 @@ const columns = [
     headerName: 'quantity',
     type: 'number',
     flex: 0.7,
+
     editable: true,    
   },
 
@@ -158,6 +157,7 @@ const columns = [
     headerName: 'prix unitare final',
     type: 'number',
     flex: 1,
+
     editable: true,
     valueFormatter: (params) =>
     `${params.getValue(params.id, 'prix_final')+',00 DA'}`
@@ -167,6 +167,7 @@ const columns = [
     headerName: 'Total',
     sortable: false,
     flex: 0.6,
+
     valueFormatter: (params) =>
     parseInt(`${params.getValue(params.id, 'prix_final')}`)*parseInt(`${
         params.getValue(params.id, 'quantity')}`) + ',00 DA',
@@ -179,6 +180,7 @@ const columns = [
     headerName: 'Restore',
     type: 'button',
     flex: 0.5,
+
     editable: true,
     renderCell: (params) => (
         <strong>
@@ -211,7 +213,6 @@ const  DataTableBaskets = ({dispatch, loading, processes, hasErrors,selectedproc
         rows={processes.filter((e)=>e.id==selectedprocess)[0]&&processes.filter((e)=>e.id==selectedprocess)[0].baskets||[]}
         columns={columns}
         pageSize={5}
-        checkboxSelection
         selectionModel={selected}        
         
       />

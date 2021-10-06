@@ -9,7 +9,7 @@ const columns = [
     field: 'name',
     headerName: "Operation d'achat",
     flex: 1,
-    minwidth:150,
+    minWidth:150,
 
     editable: true,
   },
@@ -19,6 +19,8 @@ const columns = [
     type: 'number',
     flex: 1,
     editable: true,
+    minWidth:200,
+
     valueFormatter: (params) =>
     `${params.getValue(params.id, 'paied')+',00 /'}`+`${params.getValue(params.id, 'total')+',00 DA '}`
   },
@@ -29,6 +31,8 @@ const columns = [
     type: 'date',
     flex: 1,
     editable: true,
+    minWidth:150,
+
     valueFormatter: (params) =>
     `${new Date(params.getValue(params.id, 'date')).toLocaleDateString()}`
   },

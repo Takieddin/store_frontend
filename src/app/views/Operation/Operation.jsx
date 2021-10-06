@@ -12,11 +12,11 @@ import { DataGrid } from '@material-ui/data-grid'
 import { Button } from '@material-ui/core'
 import DigitalNumber from './DigitalNumber'
 import { Input } from '@material-ui/core'
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
 import { addProcess } from 'app/redux/actions/ProcessActions'
 import ProcessSnackbar from './ProcessSnackbar'
 
@@ -31,13 +31,13 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
         payments: [],
         baskets: [],
         client_id: 1,
-        paied:0,
+        paied: 0,
     })
     useEffect(() => {
         dispatch(fetchClients())
         dispatch(fetchCBS())
     }, [dispatch])
-    const [value, setValue] = useState(clients?clients[0]:[])
+    const [value, setValue] = useState(clients ? clients[0] : [])
     const [value1, setValue1] = useState([])
     const [value2, setValue2] = useState([])
     const [selectedStocks, setSelectedStocks] = useState([])
@@ -53,22 +53,27 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
     ]
     const [rows, setRows] = useState([])
     const ha = (e) => {
-        setOp({ client_id: e?.id||1 })
+        setOp({ client_id: e?.id || 1 })
     }
-    const handleSubmit =()=>{
-        if(open){
-            const data ={client_id:op.client_id,date:null,paied:payment,total:total,name:null,baskets:[...rows]}
+    const handleSubmit = () => {
+        if (open) {
+            const data = {
+                client_id: op.client_id,
+                date: null,
+                paied: payment,
+                total: total,
+                name: null,
+                baskets: [...rows],
+            }
             dispatch(addProcess(data))
             console.log('data')
             console.log(data)
             setOpen(false)
             dispatch(fetchCBS())
             dispatch(fetchClients())
-
-
-        
-    }else{
-        setOpen(true)}
+        } else {
+            setOpen(true)
+        }
     }
     const mystyle = {
         display: 'flex',
@@ -80,19 +85,20 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
             field: 'brand_name',
             headerName: 'Mark(Brand)',
             flex: 1,
-            minwidth: 150,
+            minWidth: 150,
 
             editable: true,
             valueFormatter: (params) =>
-                `${params.getValue(params.id, 'brand_name')}` + '-'+`${params.getValue(params.id, 'name')}`,
+                `${params.getValue(params.id, 'brand_name')}` +
+                '-' +
+                `${params.getValue(params.id, 'name')}`,
         },
         {
             field: 'instock',
             headerName: 'instock',
             type: 'number',
             flex: 0.6,
-            minwidth: 150,
-
+            minWidth: 150,
         },
 
         {
@@ -100,7 +106,7 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
             headerName: 'prix',
             type: 'number',
             flex: 0.8,
-            minwidth: 150,
+            minWidth: 150,
 
             valueFormatter: (params) =>
                 `${params.getValue(params.id, 'item_sale_price')}` + ',00 DA',
@@ -112,7 +118,7 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
             type: 'number',
             flex: 0.8,
             editable: true,
-            minwidth: 150,
+            minWidth: 150,
 
             valueFormatter: (params) =>
                 `${params.getValue(params.id, 'prix_final')}` + ',00 DA',
@@ -124,8 +130,7 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
             type: 'number',
             flex: 0.6,
             editable: true,
-            minwidth: 150,
-
+            minWidth: 150,
         },
         {
             field: 'delete',
@@ -133,7 +138,7 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
             type: 'button',
             flex: 0.4,
             editable: true,
-            minwidth: 150,
+            minWidth: 150,
 
             renderCell: (params) => (
                 <strong>
@@ -227,7 +232,7 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
 
         if (model && model != {}) {
             let id = Object.keys(model)[0]
-           
+
             if (id) {
                 let newrow = rows.find((e) => e.id == id)
                 console.log('newrow')
@@ -238,7 +243,6 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
                     var new_prix =
                         model[id]['prix_final']?.value || newrow.prix_final
 
-                   
                     let t = -1 * newrow.quantity * newrow.prix_final
 
                     newrow.quantity = new_quantity
@@ -270,7 +274,6 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
                                 <Autocomplete
                                     id="tags-standard"
                                     value={value}
-
                                     onChange={(event, newValue) => {
                                         setValue(newValue)
                                         ha(newValue)
@@ -313,146 +316,168 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
                                     </div>
                                     Ajouter Produits
                                 </div>
-                                <div style={mystyle}>
-                                    <Autocomplete
-                                        style={{ flex: 4 }}
-                                        blurOnSelect
-                                        clearOnBlur
-                                        filterSelectedOptions
-                                        onChange={(event, newValue, re) => {
-                                            setValue2(newValue)
-                                            setSelectedStocks([
-                                                ...stocks.filter(
-                                                    (e) =>
-                                                        e.brand_id ==
-                                                            parseInt(
-                                                                newValue &&
-                                                                    newValue.id
-                                                            ) && e.instock > 0
-                                                ),
-                                            ])
-
-                                        
-                                        }}
-                                        id="tags-standard"
-                                        value={value2}
-                                        options={brands}
-                                        getOptionLabel={(option) => option.name}
-                                        defaultValue={null}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                variant="standard"
-                                                label="Mark(brand)"
-                                                placeholder=""
-                                            />
-                                        )}
-                                    />
-                                    <ProcessSnackbar/>
-                                    <Autocomplete
-                                        blurOnSelect
-                                        filterSelectedOptions
-                                        clearOnBlur
-                                        style={{ flex: 4 }}
-                                        id="tags-standard"
-                                        value={value1}
-                                        onChange={(event, newValue) => {
-                                            newValue
-                                                ? setValue1(newValue)
-                                                : setValue1([])
-                                        }}
-                                        options={selectedStocks || []}
-                                        getOptionLabel={(option) =>
-                                            option.name
-                                                ? option.name +
-                                                  `:..........prix:` +
-                                                  option.item_sale_price +
-                                                  `,00DA` +
-                                                  `...... instock : ` +
-                                                  option.instock
-                                                : ''
-                                        }
-                                        defaultValue={null}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                variant="standard"
-                                                label="Stock"
-                                                placeholder=""
-                                            />
-                                        )}
-                                    />
-                                    <div style={{ flex: 1 }}>
-                                        <Button
-                                            className="pt-2"
-                                            color="primary"
-                                            variant="contained"
-                                            onClick={handleAdd}
-                                        >
-                                            <Icon>queue</Icon>
-                                            <span className="pl-1 capitalize">
-                                                add
-                                            </span>
-                                        </Button>
-                                    </div>
-                                </div>
+                                <Grid container spacing={6}>
+                                    <Grid item lg={5} md={6} sm={12} xs={12}>
+                                        <Autocomplete
+                                            style={{ flex: 4 }}
+                                            blurOnSelect
+                                            clearOnBlur
+                                            filterSelectedOptions
+                                            onChange={(event, newValue, re) => {
+                                                setValue2(newValue)
+                                                setSelectedStocks([
+                                                    ...stocks.filter(
+                                                        (e) =>
+                                                            e.brand_id ==
+                                                                parseInt(
+                                                                    newValue &&
+                                                                        newValue.id
+                                                                ) &&
+                                                            e.instock > 0
+                                                    ),
+                                                ])
+                                            }}
+                                            id="tags-standard"
+                                            value={value2}
+                                            options={brands}
+                                            getOptionLabel={(option) =>
+                                                option.name
+                                            }
+                                            defaultValue={null}
+                                            renderInput={(params) => (
+                                                <TextField
+                                                    {...params}
+                                                    variant="standard"
+                                                    label="Mark(brand)"
+                                                    placeholder=""
+                                                />
+                                            )}
+                                        />
+                                    </Grid>
+                                    <ProcessSnackbar />
+                                    <Grid item lg={4} md={6} sm={12} xs={12}>
+                                        <Autocomplete
+                                            blurOnSelect
+                                            filterSelectedOptions
+                                            clearOnBlur
+                                            style={{ flex: 4 }}
+                                            id="tags-standard"
+                                            value={value1}
+                                            onChange={(event, newValue) => {
+                                                newValue
+                                                    ? setValue1(newValue)
+                                                    : setValue1([])
+                                            }}
+                                            options={selectedStocks || []}
+                                            getOptionLabel={(option) =>
+                                                option.name
+                                                    ? option.name +
+                                                      `:..........prix:` +
+                                                      option.item_sale_price +
+                                                      `,00DA` +
+                                                      `...... instock : ` +
+                                                      option.instock
+                                                    : ''
+                                            }
+                                            defaultValue={null}
+                                            renderInput={(params) => (
+                                                <TextField
+                                                    {...params}
+                                                    variant="standard"
+                                                    label="Stock"
+                                                    placeholder=""
+                                                />
+                                            )}
+                                        />
+                                    </Grid>
+                                    <Grid item lg={4} md={6} sm={12} xs={12}>
+                                        <div style={{ flex: 1 }}>
+                                            <Button
+                                                className="pt-2"
+                                                color="primary"
+                                                variant="contained"
+                                                onClick={handleAdd}
+                                            >
+                                                <Icon>queue</Icon>
+                                                <span className="pl-1 capitalize">
+                                                    add
+                                                </span>
+                                            </Button>
+                                        </div>
+                                    </Grid>
+                                </Grid>
                             </Card>
                             <Card className="px-6 py-4 mb-6">
-                                <div className="card-title">
-                                    <h1 style={{ color: 'green' }}>
-                                        Payment`${payment}`
-                                    </h1>
-                                </div>
-                                <div style={mystyle}>
-                                    <Input
-                                        root='color:"red"'
-                                        style={{
-                                            flex: 0.6,
-                                            textAlign: 'right',
-                                        }}
-                                        defaultValue={total}
-                                        value={payment}
-                                        onChange={(e) =>
-                                            setPayment(e.target.value)
-                                        }
-                                    ></Input>{' '}
-                                    <h1 style={{ flex: 1 }}>
-                                        ,00 / {total},00 DA
-                                    </h1>
-                                    <h2 style={{ flex: 1, color: 'red' }}>
-                                        {parseInt(total) - parseInt(payment) >
-                                        0 ? (
-                                            <div>
-                                                Credit:
-                                                {parseInt(total) -
-                                                    parseInt(payment)}
-                                                ,00 DA
-                                            </div>
-                                        ) : (
-                                            <div></div>
-                                        )}
-                                    </h2>
-                                    <div
-                                        style={{ flex: 1, alignItems: 'right' }}
-                                    >
-                                        <Button
-                                            className="pt-2"
-                                            color="secondary"
-                                            variant="contained"
-                                            onClick={handleSubmit}
+                                <Grid container spacing={6}>
+                                    <Grid item lg={4} md={6} sm={12} xs={12}>
+                                        <div className="card-title">
+                                            <h1 style={{ color: 'green' }}>
+                                                Payment`${payment}`
+                                            </h1>
+                                        </div>
+                                    </Grid>
+                                    <Grid item lg={8} md={12} sm={12} xs={12}>
+                                        <div style={mystyle}>
+                                        <Input
+                                            root='color:"red"'
+                                            style={{
+                                                flex: 1,
+                                                textAlign: 'right',
+                                            }}
+                                            defaultValue={total}
+                                            value={payment}
+                                            onChange={(e) =>
+                                                setPayment(e.target.value)
+                                            }
+                                        ></Input>{' '}
+                                        <h1 style={{ flex: 1.5 }}>
+                                            ,00 / {total},00 DA
+                                        </h1>
+                                        </div>
+                                    </Grid>
+                                    
+                                    <Grid item lg={4} md={6} sm={12} xs={12}>
+                                        <div
+                                            style={{
+                                                flex: 1,
+                                                alignItems: 'right',
+                                            }}
                                         >
-                                            <Icon>shopping_cart</Icon>
-                                            <span className="pl-1 capitalize">
-                                                Confirmer l'achat
-                                            </span>
-                                        </Button>
-                                    </div>
-                                </div>
+                                            <Button
+                                                className="pt-2"
+                                                color="secondary"
+                                                variant="contained"
+                                                onClick={handleSubmit}
+                                            >
+                                                <Icon>shopping_cart</Icon>
+                                                <span className="pl-1 capitalize">
+                                                    Confirmer l'achat
+                                                </span>
+                                            </Button>
+                                        </div>
+                                    </Grid>
+                                    <Grid item lg={4} md={6} sm={12} xs={12}>
+                                        <h2 style={{ flex: 1, color: 'red' }}>
+                                            {parseInt(total) -
+                                                parseInt(payment) >
+                                            0 ? (
+                                                <div>
+                                                    Credit:
+                                                    {parseInt(total) -
+                                                        parseInt(payment)}
+                                                    ,00 DA
+                                                </div>
+                                            ) : (
+                                                <div></div>
+                                            )}
+                                        </h2>
+                                    </Grid>
+                                </Grid>
                             </Card>
                             <div>
                                 <Dialog
                                     open={open}
-                                    onClose={()=>setOpen(false)}
+                                    onClose={() => setOpen(false)}
                                     aria-labelledby="alert-dialog-title"
                                     aria-describedby="alert-dialog-description"
                                 >
@@ -461,16 +486,34 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
                                     </DialogTitle>
                                     <DialogContent>
                                         <DialogContentText id="alert-dialog-description">
-                                            <h1>client:{clients?.filter(e=>e.id==op.client_id)[0]?.name}</h1>
-                                            <h1>achat:{rows.map(e=><h4>-{e.brand_name} ___  :prix_final:{e.prix_final},00DA ___  quantity:{e.quantity}</h4>)}</h1>
+                                            <h1>
+                                                client:
+                                                {
+                                                    clients?.filter(
+                                                        (e) =>
+                                                            e.id == op.client_id
+                                                    )[0]?.name
+                                                }
+                                            </h1>
+                                            <h1>
+                                                achat:
+                                                {rows.map((e) => (
+                                                    <h4>
+                                                        -{e.brand_name} ___
+                                                        :prix_final:
+                                                        {e.prix_final},00DA ___
+                                                        quantity:{e.quantity}
+                                                    </h4>
+                                                ))}
+                                            </h1>
                                             <h1>total:{total}</h1>
                                             <h1>payment:{payment}</h1>
-                                            <h1>credit:{total-payment}</h1>
+                                            <h1>credit:{total - payment}</h1>
                                         </DialogContentText>
                                     </DialogContent>
                                     <DialogActions>
                                         <Button
-                                            onClick={()=>setOpen(false)}
+                                            onClick={() => setOpen(false)}
                                             color="primary"
                                         >
                                             Disagree
@@ -489,8 +532,7 @@ const Operation = ({ dispatch, clients, brands, stocks }) => {
                     </Grid>
 
                     <Grid item lg={4} md={4} sm={12} xs={12}>
-                        <Card >
-                       
+                        <Card>
                             <DoughnutChart
                                 height="300px"
                                 color={[
