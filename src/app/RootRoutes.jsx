@@ -13,13 +13,15 @@ import clientsRoutes from './views/listClients/clientsRoutes'
 import stockRoutes from './views/stock/stockRoutes'
 import fournisseursRoutes from './views/listFournisseurs/fournisseursRoutes'
 import operationRoutes from './views/Operation/operationRoutes'
+import { authRoles } from './auth/authRoles'
 
 
 const redirectRoute = [
     {
         path: '/',
         exact: true,
-        component: () => <Redirect to="/dashboard/default" />,
+        auth: authRoles.sa,
+        component: () => <Redirect to="/dashboard" />,
     },
 ]
 

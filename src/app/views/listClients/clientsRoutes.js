@@ -3,7 +3,7 @@ import { authRoles } from '../../auth/authRoles'
 
 const clientsRoutes = [
     {
-        path: '/listClients',
+        path: '/listclients',
         component: React.lazy(() => import('./Clients')),
         auth: authRoles.sa,
     }
